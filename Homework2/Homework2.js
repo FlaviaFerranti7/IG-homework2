@@ -162,7 +162,7 @@ image_bark.src = "tronco.jpg"
 
 var texSizeface = 155;  //548
 var image_face = new Image();
-image_face.src = "f_bear.jpg"
+image_face.src = "facebear.jpg"
 
 var texSizeear = 47;  //548
 var image_ear = new Image();
