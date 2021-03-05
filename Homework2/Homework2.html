@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .column {
+        float: left;
+        height: 300px;
+        }
+        .left, .right {
+        width: 20%;
+        align-content: center;
+        margin-top: 9%;      
+        }
+        .right{
+        margin-top: 18%;
+        }
+        .middle {
+        width: 60%;
+        margin-top: 0.5%;
+        }
+        .row:after {
+        content: "";
+        display: table;
+        clear: both;
+        }
+
+        #animationButton, #resetAnimationButton, #speed {
+            background-color: rgb(10, 52, 190);
+            color: white;
+            padding: 14px;
+            font-size: 20px;
+            border-radius: 12px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            position: relative;
+            left: 24%;  
+            cursor: pointer;
+        }
+        #speed {
+            display: none;
+            left: 31.5%;
+            position: absolute;
+        }
+
+        .slider{
+        width: 80%;
+        }
+        .projslider {
+        -webkit-appearance: none; 
+        width: 80%;
+        height: 5px;
+        background: #0d0349;
+        margin-bottom: 25px;
+        }
+        .projslider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 15px;
+        height: 20px;
+        background: rgb(10, 52, 190);
+        cursor: pointer;
+        }
+
+    </style>
+</head>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+#version 300 es
+
+in vec4 aPosition;
+in vec2 aTexCoord;
+
+uniform mat4 modelViewMatrix;
+uniform mat4 projectionMatrix;
+
+out vec2 vTexCoord;
+
+void main()
+{
+    vTexCoord = aTexCoord;
+    gl_Position = projectionMatrix * modelViewMatrix * aPosition;
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+#version 300 es
+
+precision mediump float;
+
+in vec2 vTexCoord;
+
+//texture
+uniform sampler2D uTexture;
+
+out vec4 fColor;
+
+void main()
+{
+    fColor = (texture(uTexture, vTexCoord));
+
+}
+</script>
+
+<script type="text/javascript" src="../Common/InitShaders.js"></script>
+<script type="text/javascript" src="../Common/MVnew.js"></script>
+<script type="text/javascript" src="Homework2.js"></script>
+
+<body>
+  
+    <div class="row">
+    
+        <div class="column left" align="center">
+            <font font-face="optima" size="+3"> Bear controller: </font> </br></br>
+            <div class = "slider" >
+            
+            <div id="hide", style="display: block;">
+            <font font-face="Georgia"> Head rotation: </font><br/>
+            -180 <input class = "projslider" id="slider10" type="range"
+            min="-180" max="0" step="10" value="-90"
+            />
+            0
+            <br/>
+            
+            <font font-face="Georgia"> Head up-down: </font><br/>
+            -90 <input class = "projslider" id="slider1" type="range"
+            min="-90" max="50" step="10" value="0"
+            />
+            50
+            <br/>
+
+            <font font-face="Georgia"> Left upper arm: </font><br/>
+            -180 <input class = "projslider" id="slider2" type="range"
+            min="-180" max="0" step="10" value="-90"
+            />
+            0
+            <br/>
+            <font font-face="Georgia"> Left lower arm: </font><br/>
+            0 <input class = "projslider" id="slider3" type="range"
+            min="0" max="180" step="10" value="0"
+            />
+            180
+            <br/>
+            <font font-face="Georgia"> Right upper arm: </font><br/>
+            -180 <input class = "projslider" id="slider4" type="range"
+            min="-180" max="0" step="10" value="-90"
+            />
+            0
+            <br/>
+            <font font-face="Georgia"> Right lower arm: </font><br/>
+            0 <input class = "projslider" id="slider5" type="range"
+            min="0" max="180" step="10" value="0"
+            />
+            180
+            <br/>
+            
+            <font font-face="Georgia"> Left upper leg: </font><br/>
+            -180 <input class = "projslider" id="slider6" type="range"
+            min="-180" max="0" step="10" value="-90"
+            />
+            0
+            <br/>
+            
+            <font font-face="Georgia"> Left lower leg: </font><br/>
+            -180 <input class = "projslider" id="slider7" type="range"
+            min="-180" max="0" step="10" value="0"
+            />
+            0
+            <br/>
+            
+            <font font-face="Georgia"> Right upper leg: </font><br/>
+            -180 <input class = "projslider" id="slider8" type="range"
+            min="-180" max="0" step="10" value="-90"
+            />
+            0
+            <br/>
+
+            <font font-face="Georgia"> Right lower leg: </font><br/>
+            -180 <input class = "projslider" id="slider9" type="range"
+            min="-180" max="0" step="10" value="0"
+            />
+            0
+            <br/>
+            </div>
+            <font font-face="Georgia"> Tail up-down: </font><br/>
+            -90 <input class = "projslider" id="slider11" type="range"
+            min="-90" max="90" step="10" value="0"
+            />
+            90
+            <br/>
+
+            <font font-face="Georgia"> Tail left right: </font><br/>
+            -180 <input class = "projslider" id="slider12" type="range"
+            min="-180" max="180" step="10" value="0"
+            />
+            180
+            <br/>            
+            
+            </div>
+        </div>
+
+        <div class="column middle" align="center">
+            <font font-face="optima" size="+3"> Animated Bear: </font> <br/><br/>
+            <button id = "speed">Speed x2</button>
+            <button id = "animationButton">Animation</button>
+            <button id = "resetAnimationButton">Reset</button>
+            <br/><br/>
+
+            <canvas id="gl-canvas" width="900" height="900">
+            Oops ... your browser doesn't support the HTML5 canvas element
+            </canvas>
+        </div>
+        
+        <div class="column right" align="center">
+            <div> <font font-face="optima" size="+3"> Viewer position controller: </font>  <br/><br/>
+            <div class = "slider" >
+            <font font-face="Georgia"> Theta: </font><br/>
+            <input class = "projslider" id="Theta" type="range"
+            min="0" max="0.64" step="0.02" value="0.4"
+            />
+            <br/>
+            
+            <font font-face="Georgia"> Phi: </font><br/>
+            <input class = "projslider" id="Phi" type="range"
+            min="0" max="2.90" step="0.02" value="2.5"
+            />
+            <br/>     
+            </div>
+        </div>
+    </div>
+</body>
+</html>
