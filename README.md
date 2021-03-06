@@ -6,8 +6,11 @@ For a detailed description click [here](report_ferranti.pdf)
 
 For trying the demo click [here](https://flaviaferranti7.github.io/IG-homework2/Homework2/Homework2.html)
 
-Enjoy! 
-<img src = "https://raw.githubusercontent.com/FlaviaFerranti7/IG-homework2/master/preview.png" width="100%" height="100%">
+Enjoy!
+
+## Preview 
+<img src = "https://raw.githubusercontent.com/FlaviaFerranti7/IG-homework2/master/preview1.png" width="100%" height="100%">
+<img src = "https://raw.githubusercontent.com/FlaviaFerranti7/IG-homework2/master/preview2.png" width="100%" height="100%">
 
 ## Author
 
