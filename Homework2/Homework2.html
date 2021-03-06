@@ -2,59 +2,59 @@
 <html>
 <head>
     <style>
-        body,html{
-            width: 100%;
-            height: 100%;
-        }
         .column {
-        display: table-cell;
+        float: left;
+        height: 300px;
         }
         .left, .right {
         width: 20%;
-        align-content: center;     
+        align-content: center;
+        margin-top: 9%;      
+        }
+        .right{
+        margin-top: 18%;
         }
         .middle {
         width: 60%;
+        margin-top: 0.5%;
         }
         .row:after {
         content: "";
         display: table;
         clear: both;
-        height: 100%;
         }
 
         #animationButton, #resetAnimationButton, #speed {
             background-color: rgb(10, 52, 190);
             color: white;
-            padding: 10px;
-            font-size: 16px;
+            padding: 14px;
+            font-size: 20px;
             border-radius: 12px;
             font-family: Georgia, 'Times New Roman', Times, serif;
             position: relative;
-            left: 20%;  
+            left: 24%;  
             cursor: pointer;
         }
         #speed {
             display: none;
-            left: 32%;
+            left: 31.5%;
             position: absolute;
         }
 
         .slider{
-        width: 90%;
-        font-size: 13px;
+        width: 80%;
         }
         .projslider {
         -webkit-appearance: none; 
         width: 80%;
         height: 5px;
         background: #0d0349;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
         }
         .projslider::-webkit-slider-thumb {
         -webkit-appearance: none;
-        width: 10px;
-        height: 15px;
+        width: 15px;
+        height: 20px;
         background: rgb(10, 52, 190);
         cursor: pointer;
         }
@@ -203,7 +203,7 @@ void main()
             <button id = "resetAnimationButton">Reset</button>
             <br/><br/>
 
-            <canvas id="gl-canvas" width="550" height="550">
+            <canvas id="gl-canvas" width="900" height="900">
             Oops ... your browser doesn't support the HTML5 canvas element
             </canvas>
         </div>
